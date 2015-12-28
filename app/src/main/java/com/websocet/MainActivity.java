@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CompletedCallback mCompletedCallback = new CompletedCallback() {
         @Override
         public void onCompleted(Exception ex) {
-            Log.d("", "CompletedCallback");
+            mWebSocket = null;
         }
     };
 
@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn: {
-                mWebSocket.send(mEd.getText().toString());
+                if(mWebSocket != null) {
+                    mWebSocket.send(mEd.getText().toString());
+                }
                 break;
             }
         }
@@ -107,8 +109,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         webSocket.setClosedCallback(mCompletedCallback);
                         webSocket.setDataCallback(mDataCallback);
 
-                        webSocket.send("test");
-                        webSocket.send("test".getBytes());
+//                        webSocket.send("test");
+//                        webSocket.send("test".getBytes());
+//                        webSocket.close();
                     }
                 });
 
