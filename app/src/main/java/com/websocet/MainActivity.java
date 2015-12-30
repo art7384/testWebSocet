@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
             Log.d("", "I got some bytes!");
+            Log.d(LOG_TAG, "I got some bytes!");
+            Log.d(LOG_TAG, "emitter > " + emitter + " | bb > " + bb);
+            bb.recycle();
         }
     };
 
@@ -65,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn = (Button) findViewById(R.id.btn);
 
         mBtn.setOnClickListener(this);
-
 
         mTxt.setText("Соединение...");
         startSocet();
